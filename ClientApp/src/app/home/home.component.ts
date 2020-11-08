@@ -5,4 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  password: string = '';
+  score: number = 0;
+  length: number = 0;
+
+  constructor() { }
+
+  onKey(event) {
+    this.password = event.target.value;
+  }
 }
