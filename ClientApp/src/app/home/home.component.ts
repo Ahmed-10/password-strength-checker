@@ -13,5 +13,6 @@ export class HomeComponent {
 
   onKey(event) {
     this.password = event.target.value;
+    this.score = this.password.length % 6;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-password-indecator',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./password-indecator.component.css']
 })
 export class PasswordIndecatorComponent implements OnInit {
-
+  @Input() score: number
   constructor() { }
 
   ngOnInit() {
