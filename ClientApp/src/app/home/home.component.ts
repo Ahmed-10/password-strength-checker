@@ -26,7 +26,6 @@ export class HomeComponent {
   ss: number = 0;
   // meet requirements -> contain [8 char, Uppercase, Lowercase, Numbers, Symbols]
   requirements: number[] = [0, 0, 0, 0, 0];
-  requirementsScore: number = 0;
   meetRequirements: boolean = false;
 
   score: number = 0;
@@ -35,6 +34,7 @@ export class HomeComponent {
   constructor() { }
 
   onKey(event) {
+    // reset the values for the counters
     this.len = 0
     this.len_l = 0
     this.num = 0
@@ -45,14 +45,15 @@ export class HomeComponent {
     for (let i = 0; i < 5; i++) { this.requirements[i] = 0 }
 
     this.password = event.target.value;
-    this.n = this.password.length;
 
+    this.n = this.password.length;
     if (this.n >= 8) { this.requirements[0] = 1 }
 
     for (let i = 0; i < this.password.length; i++) {
       this.calculateScore(this.password[i], i)
     }
 
+    // calculate the score 
     this.score = (this.n * 4)
       + (Math.abs(this.len - this.n) * 2)
       + (Math.abs(this.len_l - this.n) * 2)
@@ -67,13 +68,15 @@ export class HomeComponent {
       this.score = this.score - this.n
     }
 
-    this.requirementsScore = this.requirements.reduce((accumulator, currentValue) => accumulator + currentValue)
-    if ((this.requirementsScore >= 4)
+    // check meeting the requirements
+    const requirementsScore = this.requirements.reduce((accumulator, currentValue) => accumulator + currentValue)
+    if ((requirementsScore >= 4)
       && (this.n >= 8)) {
       this.score = this.score + (this.n * 2);
       this.meetRequirements = true;
     }
 
+    // scale down the score
     this.score = Math.trunc(this.score *= (3 / 5));
 
     if (this.score >= 100) { this.strength = 5 }
@@ -109,7 +112,9 @@ export class HomeComponent {
       }
     }
 
+    // check the three sequential and more
     if (index > 1) {
+      // sequential special charcters
       if (this.specialChar.includes(c)) {
         const specialIndex = this.specialChar.indexOf(c)
         if (specialIndex > 1) {
@@ -119,6 +124,7 @@ export class HomeComponent {
           }
         }
       }
+      // sequential characters letters and numbers
       else if ((c.charCodeAt() - this.password.charCodeAt(index - 1) == 1)
         && (c.charCodeAt() - this.password.charCodeAt(index - 2) == 2)) {
         this.sc += 1;
