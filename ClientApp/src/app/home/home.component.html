@@ -4,12 +4,13 @@
   </div>
   <div class="col-12 mx-auto mt-5" style="max-width: 300px">
     <label for="inputPassword">Password</label>
-    <input
-           (keyup)="onKey($event)"
+    <input (keyup)="onKey($event)"
            type="password"
            class="form-control"
            id="inputPassword"
            placeholder="Password">
-    <app-password-indecator [score]="score"></app-password-indecator>
+    <app-password-indecator [score]="strength"></app-password-indecator>
+    <app-requirement-indecator [req]="requirements"></app-requirement-indecator>
+    <div>score: {{score}}</div>
   </div>
 </div>

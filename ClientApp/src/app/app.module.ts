@@ -6,14 +6,16 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { PasswordIndecatorComponent} from './password-indecator/password-indecator.component'
+import { PasswordIndecatorComponent } from './password-indecator/password-indecator.component'
+import { RequirementIndecatorComponent } from './requirement-indecator/requirement-indecator.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    PasswordIndecatorComponent
+    PasswordIndecatorComponent,
+    RequirementIndecatorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
